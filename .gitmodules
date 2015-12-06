@@ -1,0 +1,9 @@
+[submodule "wazibo-web"]
+	path = wazibo-web
+	url = https://github.com/tato123/wazibo-web.git
+[submodule "wazibo-deployment"]
+	path = wazibo-deployment
+	url = https://github.com/tato123/wazibo-deployment.git
+[submodule "wazibo-server"]
+	path = wazibo-server
+	url = https://github.com/tato123/wazibo-server.git

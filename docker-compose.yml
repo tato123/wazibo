@@ -1,0 +1,23 @@
+wazibo-server:
+  build: ./wazibo-server
+  ports:
+   - "9080:9080"
+  volumes:
+   - ./wazibo-server:/wazibo-server/src
+  links:
+    - mongo
+wazibo-web:
+  build: ./wazibo-web
+  ports:
+   - "80:9080"
+  volumes:
+   - ./wazibo-web:/wazibo-web/src
+  links:
+    - mongo
+mongo:
+  image: mongo
+  ports:
+   - "27017:27017"
+  volumes:
+    - /data/db
+  command: --smallfiles --quiet --logpath=/dev/null

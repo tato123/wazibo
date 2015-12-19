@@ -1,19 +1,30 @@
+haproxy:
+    build: ./wazibo-nginx
+    links:
+        - wazibo-web:wazibo-web
+        - wazibo-server:wazibo-server
+    ports:
+        - "80:80"
+    env_file: ./wazibo-deployment/dev.env
 wazibo-server:
   build: ./wazibo-server
   ports:
-   - "9080:9080"
+   - "9080"
   volumes:
    - ./wazibo-server:/wazibo-server/src
   links:
     - mongo
+  env_file: ./wazibo-deployment/dev.env
 wazibo-web:
   build: ./wazibo-web
   ports:
-   - "80:9080"
+   - "9080"
   volumes:
    - ./wazibo-web:/wazibo-web/src
   links:
     - mongo
+    - wazibo-server
+  env_file: ./wazibo-deployment/dev.env
 mongo:
   image: mongo
   ports:

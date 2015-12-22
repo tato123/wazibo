@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: wazibo-haproxy
+  name: haproxy-controller
+spec:
+  replicas: 1
+  selector:
+    name: wazibo-haproxy
+  template:
+    metadata:
+      labels:
+        name: wazibo-haproxy
+    spec:
+      containers:
+      - image: us.gcr.io/wazibo-1143/wazibo-haproxy
+        imagePullPolicy: Always        
+        name: wazibo-haproxy
+        ports:
+        - containerPort: 80

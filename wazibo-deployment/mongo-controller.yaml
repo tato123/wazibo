@@ -2,20 +2,20 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: mongo
+    name: wazibo-mongo
   name: mongo-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: mongo
+        name: wazibo-mongo
     spec:
       containers:
       - image: mongo
-        name: mongo
+        name: wazibo-mongo
         ports:
-        - name: mongo
+        - name: wazibo-mongo
           containerPort: 27017
           hostPort: 27017
         volumeMounts:

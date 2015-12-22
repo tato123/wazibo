@@ -2,27 +2,27 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: wazibo-web
-  name: web-controller
+    name: wazibo-server
+  name: api-controller
 spec:
   replicas: 1
   selector:
-    name: wazibo-web
+    name: wazibo-server
   template:
     metadata:
       labels:
-        name: wazibo-web
+        name: wazibo-server
     spec:
       containers:
-      - image: us.gcr.io/wazibo-1143/wazibo-web
+      - image: us.gcr.io/wazibo-1143/wazibo-server
         imagePullPolicy: Always
-        env:
+        env:          
           - name: WAZIBO_WEB_URL
             value: www.wazibo.com
           - name: WAZIBO_API_URL
             value: api.wazibo.com
           - name: WAZIBO_HTTP_TRANSPORT
             value: http
-        name: wazibo-web
+        name: wazibo-server
         ports:
         - containerPort: 9080

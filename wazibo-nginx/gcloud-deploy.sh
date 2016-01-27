@@ -1,0 +1,1 @@
+docker build -t us.gcr.io/wazibo-1143/wazibo-nginx . && gcloud docker push us.gcr.io/wazibo-1143/wazibo-nginx

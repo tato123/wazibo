@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: letsencrypt-service
+  labels:
+    name: letsencrypt 
+    role: cert-app 
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: letsencrypt
+    role: cert-app

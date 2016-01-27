@@ -14,7 +14,7 @@ spec:
         name: wazibo-web
     spec:
       containers:
-      - image: us.gcr.io/wazibo-1143/wazibo-web
+      - image: us.gcr.io/wazibo-1143/wazibo-web:master.8
         imagePullPolicy: Always
         env:
           - name: WAZIBO_WEB_URL

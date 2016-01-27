@@ -1,0 +1,42 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: letsencrypt-rc
+  labels:
+    name: letsencrypt
+    role: cert-app
+spec:
+  replicas: 1
+  selector:
+    name: letsencrypt
+    role: cert-app
+  template:
+    metadata:
+      name: letsencrypt-rc
+      labels:
+        name: letsencrypt
+        role: cert-app
+    spec:
+      containers:
+        - name: letsencrypt
+          image: ployst/letsencrypt:0.0.3
+          volumeMounts: 
+            - name: "secrets"
+              mountPath: "/etc/secrets"
+              readOnly: true
+          env:
+          - name: EMAIL
+            value: jfontanez@gmail.com
+          - name: DOMAINS
+            value: wazibo.com www.wazibo.com api.wazibo.com
+          - name: RC_NAMES
+            value: nginx-ssl-proxy-api
+          - name: SECRET_NAME
+            value: certs-wazibo.com
+          ports:
+          - name: ssl-proxy-http
+            containerPort: 80
+      volumes: 
+        - name: "secrets"
+          secret: 
+            secretName: "certs-wazibo.com"
